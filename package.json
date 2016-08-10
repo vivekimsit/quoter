@@ -1,0 +1,61 @@
+{
+  "name": "quoter",
+  "version": "1.0.0",
+  "description": "Generate random quotes.",
+  "homepage": "https://github.com/vivekimsit/quoter#readme",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivekimsit/quoter.git"
+  },
+  "scripts": {
+    "pretest": "node_modules/.bin/eslint src/*.js test/*.js",
+    "test": "node_modules/.bin/mocha"
+  },
+  "directories": {
+    "src": "./src",
+    "test": "./test"
+  },
+  "keywords": [
+    "ndoe",
+    "ddd",
+    "clean-architecture",
+    "service",
+    "web",
+    "architecture"
+  ],
+  "author": "Vivek Poddar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vivekimsit/quoter/issues"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "modules": true
+      }
+    },
+    "env": {
+      "mocha": true,
+      "node": true
+    },
+    "rules": {
+      "quotes": [2, "single"],
+      "eqeqeq": 0,
+      "strict": 0
+    }
+  },
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-runtime": "^6.9.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "eslint": "^3.2.0",
+    "mocha": "^2.5.3"
+  }
+}
