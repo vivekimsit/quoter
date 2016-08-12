@@ -3,3 +3,4 @@
 --reporter nyan
 --compilers js:babel-core/register
 --growl
+--watch
