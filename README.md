@@ -4,6 +4,6 @@ Simple quote generation application showcasing DDD and Clean Architecture.
 ### TODO
 
 - [x] Setup inital repository
-- [ ] Add features
-- [ ] Add tests
+- [x] Add features
+- [x] Add tests
 - [ ] Stick to the features
