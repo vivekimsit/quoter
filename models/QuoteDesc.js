@@ -1,33 +1,41 @@
-const data = Symbol('quotes');
+const fs = require('fs');
+const Symbols = {
+	quotes: Symbol('quotes data'),
+	count: Symbol('quotes count')
+};
+
+function getRandomNumber(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 export default class QuoteDesc {
-	constructor(quoteRepository) {
-		this[data] = [];
-		this[N] = 0;
-		this.quoteRepository = quoteRepository;
-		this.readQuotes();
+	constructor(file, cb) {
+		this[Symbols.quotes] = [];
+		this[Symbols.count] = 0;
+		this.readQuotes(file, cb);
 	}
 
-	readQuotes() {
-		this.quoteRepository.readAll()
-				.then( (res) => {
-					this[data] = res.data;
-				})
-				.catch( (err) => {
-					console.log('Error reading quotes');
-				});
+	readQuotes(file, cb) {
+		fs.readFile(file, 'utf-8', (err, res) => {
+			if (err) {
+				cb(err);
+				throw err;
+			};
+			res = JSON.parse(res);
+			this[Symbols.quotes] = res;
+			this[Symbols.count] = res.length;
+			//console.log(res);
+			cb(null, res);
+		});
 	}
 
 	count() {
-		return this[N];
+		return this[Symbols.count];
 	}
 
-	getRandomQuote() {
-		let idx = getRandomNumber(0, this[N]);
-		return this[data][idx];
-	}
-
-	static getRandomNumber(min, max) {
-		return Math.random() * (max - min) + min;
+	randomQuote() {
+		let idx = getRandomNumber(0, this.count());
+		console.log('Fetching random quote', this.count());
+		return this[Symbols.quotes][idx];
 	}
 }

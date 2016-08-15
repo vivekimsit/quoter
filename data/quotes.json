@@ -1,0 +1,27 @@
+[
+  {
+    "text": "To be or not to be, that is the question",
+    "author": "Shakespeare",
+    "category": "literary"
+  },
+  {
+    "text": "Life is like a box of chocolates",
+    "author": "foobar",
+    "category": "movie"
+  },
+  {
+    "text": "May the Force be with you",
+    "author": "Obie Wan Kanobi",
+    "category": "movie"
+  },
+  {
+    "text": "Great things are done by a series of small things brought together",
+    "author": "Vincent Van Gogh",
+    "category": "inspiration"
+  },
+  {
+    "text": "To lose patience is to lose the battle",
+    "author": "Mahatma Gandhi",
+    "category": "inspiration"
+  }
+]
