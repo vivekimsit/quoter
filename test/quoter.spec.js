@@ -14,12 +14,17 @@ suite('Quoter', () => {
 	});
 
   test('should get random quote', () => {
-		equal(isDefAndNotNull(quotes.randomQuote()), true);
+		let q = quotes.randomQuote();
+		equal(isDefAndNotNull(q), true);
 	});
 
-  test.skip('should get random quote by author', () => {
+  test('should get random quote by author', () => {
+		let q = quotes.randomQuoteByAuthor('Mahatma Gandhi');
+		equal(q.author, 'Mahatma Gandhi');
 	});
 
-  test.skip('should get random quote by category', () => {
+  test('should get random quote by category', () => {
+		let q = quotes.randomQuoteByCategory('inspiration');
+		equal(q.category, 'inspiration');
 	});
 });

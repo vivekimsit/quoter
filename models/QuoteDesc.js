@@ -5,7 +5,11 @@ const Symbols = {
 };
 
 function getRandomNumber(min, max) {
-	return Math.floor(Math.random() * (max - min + 1) + min);
+	return Math.floor(Math.random() * (max - min) + min);
+}
+
+function filter(list, predicate) {
+	return list.filter(predicate);
 }
 
 export default class QuoteDesc {
@@ -24,7 +28,6 @@ export default class QuoteDesc {
 			res = JSON.parse(res);
 			this[Symbols.quotes] = res;
 			this[Symbols.count] = res.length;
-			//console.log(res);
 			cb(null, res);
 		});
 	}
@@ -34,8 +37,23 @@ export default class QuoteDesc {
 	}
 
 	randomQuote() {
-		let idx = getRandomNumber(0, this.count());
-		console.log('Fetching random quote', this.count());
-		return this[Symbols.quotes][idx];
+		const id = getRandomNumber(0, this.count());
+		return this[Symbols.quotes][id];
+	}
+
+	randomQuoteByAuthor(author) {
+		const quotes = filter(this[Symbols.quotes], (q) => {
+			return q.author === author;	
+		});
+		const id = getRandomNumber(0, quotes.length - 1);
+		return quotes[id];
+	}
+
+	randomQuoteByCategory(category) {
+		const quotes = filter(this[Symbols.quotes], (q) => {
+			return q.category === category;	
+		});
+		const id = getRandomNumber(0, quotes.length - 1);
+		return quotes[id];
 	}
 }
