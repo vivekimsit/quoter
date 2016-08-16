@@ -42,14 +42,18 @@
       "node": true
     },
     "rules": {
-      "quotes": [2, "single"],
+      "quotes": [
+        2,
+        "single"
+      ],
       "eqeqeq": 0,
       "strict": 0
     }
   },
   "dependencies": {
     "babel": "^6.5.2",
-    "babel-runtime": "^6.9.2"
+    "babel-runtime": "^6.9.2",
+    "express": "^4.14.0"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
