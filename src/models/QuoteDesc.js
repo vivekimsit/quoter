@@ -28,7 +28,7 @@ export default class QuoteDesc {
 			res = JSON.parse(res);
 			this[Symbols.quotes] = res;
 			this[Symbols.count] = res.length;
-			cb(null, res);
+			cb && cb(null, true);
 		});
 	}
 
@@ -36,9 +36,9 @@ export default class QuoteDesc {
 		return this[Symbols.count];
 	}
 
-	randomQuote() {
+	randomQuote(cb) {
 		const id = getRandomNumber(0, this.count());
-		return this[Symbols.quotes][id];
+		cb(null, this[Symbols.quotes][id]);
 	}
 
 	randomQuoteByAuthor(author) {

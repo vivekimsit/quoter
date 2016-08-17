@@ -11,10 +11,11 @@
   "scripts": {
 		"build": "npm run clean && npm run copy-html & npm run transpile",
     "clean": "del build",
-		"copy-html": "copyfiles delivery/**/*.html build",
+		"copy-html": "copyfiles data/quotes.json delivery/**/*.html build",
     "transpile": "babel src/ -d build -s",
     "pretest": "node_modules/.bin/eslint src/*.js test/*.js",
-    "test": "node_modules/.bin/mocha"
+    "test": "node_modules/.bin/mocha",
+		"start": "npm run build && node build/app.js"
   },
   "directories": {
     "src": "./src",

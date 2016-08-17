@@ -1,6 +1,6 @@
+const path = require('path');
 const express = require('express');
 const app = express();
-const router = express.Router();
 
 import {QuoteDesc} from './models';
 
@@ -14,13 +14,23 @@ function serve(req, res, next) {
 }
 
 const PORT = 3000;
+const DATA_PATH = path.join(__dirname, './data', 'quotes.json');
+
+function getRandomQuote(res) {
+	let quotes = new QuoteDesc(DATA_PATH, (err, done) => {
+		if (done) {
+			quotes.randomQuote((err, data) => {
+				res.send(data);
+			});
+		}
+	});
+}
 
 // Quote specific routes
-router.get('/', function(req, res) {
-	console.log('Getting random quote');
-	let quotes = new QuoteDesc();
-	res.send(quotes.get());
-});
+app.route('/api/v1')
+	.get(function(req, res) {
+		getRandomQuote(res);
+	});
 
 app.listen(PORT, () => {
 	console.log(`App listening on port ${PORT}`);

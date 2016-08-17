@@ -20,5 +20,15 @@
 
       <!-- Add your site or application content here -->
       <p>Hello world!</p>
+      <script>
+        function reqListener () {
+          console.log(this.responseText);
+        }
+        var req = new XMLHttpRequest();
+        req.addEventListener("load", reqListener);
+        req.open("GET", "http://localhost:3000/api/v1");
+        req.setRequestHeader("Accept","application/json");
+        req.send();
+      </script>
   </body>
 </html>
