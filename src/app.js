@@ -19,9 +19,7 @@ const DATA_PATH = path.join(__dirname, './data', 'quotes.json');
 function getRandomQuote(res) {
 	let quotes = new QuoteDesc(DATA_PATH, (err, done) => {
 		if (done) {
-			quotes.randomQuote((err, data) => {
-				res.send(data);
-			});
+			res.json(quotes.randomQuote());
 		}
 	});
 }

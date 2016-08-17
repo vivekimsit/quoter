@@ -36,9 +36,9 @@ export default class QuoteDesc {
 		return this[Symbols.count];
 	}
 
-	randomQuote(cb) {
+	randomQuote() {
 		const id = getRandomNumber(0, this.count());
-		cb(null, this[Symbols.quotes][id]);
+		return this[Symbols.quotes][id];
 	}
 
 	randomQuoteByAuthor(author) {
