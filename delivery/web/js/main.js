@@ -1,17 +1,23 @@
-function AppCtrl($http) {
-	this.message = 'Baking your awesome quote';
+function AppCtrl($http, $timeout) {
+	var vm = this;
 
-	$http({
-		method: 'GET',
-		url: '/api/v1',
-		headers: {
-			'Accept': 'application/json'
-		}
-	}).then(function successCallback(response) {
-		this.quote = response.data;
-		this.message = '';
-		console.log(response);
-	}.bind(this), function errorCallback(response) {
-		console.log(response);
-	});
+	vm.message = 'Baking your awesome quote';
+
+	function readQuote() {
+		$http({
+			method: 'GET',
+			url: '/api/v1',
+			headers: {
+				'Accept': 'application/json'
+			}
+		}).then(function successCallback(response) {
+			vm.quote = response.data;
+			vm.message = '';
+			$timeout(readQuote, 5000 /* request next quote after 5secs */);
+		}, function errorCallback(response) {
+			console.log(response);
+		});
+	}
+
+	readQuote();
 }
