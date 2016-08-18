@@ -25,24 +25,12 @@
           <span flex></span>
         </div>
       </md-toolbar>
-      <md-content ng-controller="AppCtrl"
+      <md-content ng-controller="AppCtrl as vm"
                   flex layout="column" layout-align="center center">
-        {{title}}
+        {{ vm.message }}
+        <h4>{{ vm.quote.text }}</h4>
+        <p><em>~ {{ vm.quote.author }} ~</em></p>
       </md-content>
-      <script>
-        function reqListener () {
-          var res = JSON.parse(this.responseText);
-         // var output = document.getElementById('output');
-         // output.textContent = res.text;
-        }
-        var req = new XMLHttpRequest();
-        req.addEventListener("load", reqListener);
-        req.open("GET", "http://localhost:3000/api/v1");
-        req.setRequestHeader("Accept","application/json");
-        document.addEventListener("DOMContentLoaded", function(event) {
-          req.send();
-        });
-      </script>
 
       <!-- Angular Material requires Angular.js Libraries -->
       <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
