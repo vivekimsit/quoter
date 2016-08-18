@@ -4,7 +4,7 @@ const app = express();
 
 import {QuoteDesc} from './models';
 
-app.use(express.static(__dirname));
+app.use('/static', express.static(path.join(__dirname, './delivery/web')));
 app.use(serve);
 
 function serve(req, res, next) {
