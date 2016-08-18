@@ -12,6 +12,7 @@
       <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
       <!-- Angular Material style sheet -->
       <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+      <link rel='stylesheet' href='./static/css/main.css'>
   </head>
   <body ng-app="App" ng-cloak layout="column" layout-fill>
       <!--[if lt IE 8]>
@@ -26,6 +27,7 @@
         </div>
       </md-toolbar>
       <md-content ng-controller="AppCtrl as vm"
+                  aria-label="main"
                   flex layout="column" layout-align="center center">
         {{ vm.message }}
         <h4>{{ vm.quote.text }}</h4>
