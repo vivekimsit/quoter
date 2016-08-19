@@ -2,8 +2,10 @@ function AppCtrl($http, $timeout) {
 	var vm = this;
 
 	vm.message = 'Baking your awesome quote';
+	vm.quote = null;
 
 	function readQuote() {
+		vm.quote = null;
 		$http({
 			method: 'GET',
 			url: '/api/v1',
@@ -13,7 +15,7 @@ function AppCtrl($http, $timeout) {
 		}).then(function successCallback(response) {
 			vm.quote = response.data;
 			vm.message = '';
-			$timeout(readQuote, 5000 /* request next quote after 5secs */);
+			$timeout(readQuote, 5000 /* request next quote after 5 secs */);
 		}, function errorCallback(response) {
 			console.log(response);
 		});
