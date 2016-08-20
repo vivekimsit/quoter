@@ -5,7 +5,7 @@ const Symbols = {
 };
 
 function getRandomNumber(min, max) {
-	return Math.floor(Math.random() * (max - min) + min);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function filter(list, predicate) {
@@ -21,14 +21,11 @@ export default class QuoteDesc {
 
 	readQuotes(file, cb) {
 		fs.readFile(file, 'utf-8', (err, res) => {
-			if (err) {
-				cb(err);
-				throw err;
-			};
+			if (err) cb(err);
 			res = JSON.parse(res);
 			this[Symbols.quotes] = res;
 			this[Symbols.count] = res.length;
-			cb && cb(null, true);
+			cb(null, this);
 		});
 	}
 

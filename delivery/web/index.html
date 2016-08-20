@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="en-US">
   <head>
+      <base href="/">
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       <title>Quoter</title>
@@ -55,6 +56,9 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
          * You must include the dependency on 'ngMaterial' 
          */
         angular.module('App', ['ngMaterial', 'ngAnimate'])
+            .config(function ($locationProvider) {
+               $locationProvider.html5Mode(true);
+               })
             .controller('AppCtrl', AppCtrl);
       </script>
   </body>

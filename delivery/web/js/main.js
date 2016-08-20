@@ -1,14 +1,19 @@
-function AppCtrl($http, $timeout) {
+function AppCtrl($http, $timeout, $location) {
 	var vm = this;
 
 	vm.message = 'Baking your awesome quote';
 	vm.quote = null;
 
 	function readQuote() {
+		var query = $location.search();
 		vm.quote = null;
 		$http({
 			method: 'GET',
 			url: '/api/v1',
+			params: {
+				author: !!query ? query.author : '',
+				category: !!query ? query.category : ''
+			},
 			headers: {
 				'Accept': 'application/json'
 			}

@@ -16,18 +16,27 @@ function serve(req, res, next) {
 const PORT = 3000;
 const DATA_PATH = path.join(__dirname, './data', 'quotes.json');
 
-function getRandomQuote(res) {
-	let quotes = new QuoteDesc(DATA_PATH, (err, done) => {
-		if (done) {
-			res.json(quotes.randomQuote());
+function getRandomQuote(res, query) {
+	new QuoteDesc(DATA_PATH, (err, model) => {
+		if (err) throw err;
+		let quotes;
+		if (query.author) {
+			quotes = model.randomQuoteByAuthor(query.author);
 		}
+		else if (query.category) {
+			quotes = model.randomQuoteByCategory(query.category);
+		}
+		else {
+			quotes = model.randomQuote();
+		}
+		res.json(quotes);
 	});
 }
 
 // Quote specific routes
 app.route('/api/v1')
 	.get(function(req, res) {
-		getRandomQuote(res);
+		getRandomQuote(res, req.query);
 	});
 
 app.listen(PORT, () => {
