@@ -1,7 +1,8 @@
 function AppCtrl($http, $timeout, $location) {
 	var vm = this;
+	var message = 'Baking your awesome quote';
 
-	vm.message = 'Baking your awesome quote';
+	vm.message = message;
 	vm.quote = null;
 
 	function readQuote() {
@@ -22,6 +23,7 @@ function AppCtrl($http, $timeout, $location) {
 			vm.message = '';
 			$timeout(readQuote, 5000 /* request next quote after 5 secs */);
 		}, function errorCallback(response) {
+			vm.message = message;
 			console.log(response);
 		});
 	}
