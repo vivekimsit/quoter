@@ -31,7 +31,8 @@
                   class="main"
                   aria-label="main"
                   flex layout="column" layout-align="center center">
-        <md-card aria-label="Quote">
+        <h4 ng-if="!vm.quote">{{ vm.message }}</h4>
+        <md-card aria-label="Quote" ng-if="vm.quote">
           <md-card-title aria-label="title">
             <md-card-title-text layout="column" layout-align="center center">
               <span class="md-headline">{{ vm.quote.text }}</span>

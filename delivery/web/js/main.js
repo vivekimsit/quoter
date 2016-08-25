@@ -14,7 +14,6 @@ AppCtrl.prototype.next = function() {
 
 AppCtrl.prototype.readQuote = function() {
   var query = this.location_.search();
-  this.quote = null;
   this.http_({
     method: 'GET',
     url: '/api/v1/quotes',
@@ -29,6 +28,8 @@ AppCtrl.prototype.readQuote = function() {
     this.quote = response.data;
     //$timeout(readQuote, 5000 /* request next quote after 5 secs */);
   }.bind(this), function errorCallback(response) {
+    this.quote = null;
+    this.message = 'Something wrong with your connection?'
     console.log(response);
-  });
+  }.bind(this));
 };
