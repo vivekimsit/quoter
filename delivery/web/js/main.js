@@ -10,7 +10,7 @@ function AppCtrl($http, $timeout, $location) {
 		vm.quote = null;
 		$http({
 			method: 'GET',
-			url: '/api/v1',
+			url: '/api/v1/quotes',
 			params: {
 				author: !!query ? query.author : '',
 				category: !!query ? query.category : ''

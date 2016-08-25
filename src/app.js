@@ -1,11 +1,13 @@
 const path = require('path');
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 
 import {QuoteDesc} from './models';
 
 app.use('/static', express.static(path.join(__dirname, './delivery/web')));
 app.use(serve);
+app.use(morgan('combined'));
 
 function serve(req, res, next) {
 	if (req.accepts('html'))
@@ -34,7 +36,7 @@ function getRandomQuote(res, query) {
 }
 
 // Quote specific routes
-app.route('/api/v1')
+app.route('/api/v1/quotes')
 	.get(function(req, res) {
 		getRandomQuote(res, req.query);
 	});
