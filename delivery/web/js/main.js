@@ -1,32 +1,34 @@
 function AppCtrl($http, $timeout, $location) {
-	var vm = this;
-	var message = 'Baking your awesome quote';
+  this.http_ = $http;
+  this.location_ = $location;
 
-	vm.message = message;
-	vm.quote = null;
+  this.message = 'Baking your awesome quotes';
+  this.quote = null;
 
-	function readQuote() {
-		var query = $location.search();
-		vm.quote = null;
-		$http({
-			method: 'GET',
-			url: '/api/v1/quotes',
-			params: {
-				author: !!query ? query.author : '',
-				category: !!query ? query.category : ''
-			},
-			headers: {
-				'Accept': 'application/json'
-			}
-		}).then(function successCallback(response) {
-			vm.quote = response.data;
-			vm.message = '';
-			//$timeout(readQuote, 5000 /* request next quote after 5 secs */);
-		}, function errorCallback(response) {
-			vm.message = message;
-			console.log(response);
-		});
-	}
+  this.readQuote();
+};
 
-	readQuote();
-}
+AppCtrl.prototype.next = function() {
+  this.readQuote();
+};
+
+AppCtrl.prototype.readQuote = function() {
+  var query = this.location_.search();
+  this.quote = null;
+  this.http_({
+    method: 'GET',
+    url: '/api/v1/quotes',
+    params: {
+      author: !!query ? query.author : '',
+      category: !!query ? query.category : ''
+    },
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(function successCallback(response) {
+    this.quote = response.data;
+    //$timeout(readQuote, 5000 /* request next quote after 5 secs */);
+  }.bind(this), function errorCallback(response) {
+    console.log(response);
+  });
+};
