@@ -31,10 +31,24 @@
                   class="main"
                   aria-label="main"
                   flex layout="column" layout-align="center center">
-        {{ vm.message }}
-        <h4 class="quote"
-            ng-class="{show: !!vm.quote, hide: !vm.quote}">{{ vm.quote.text }}</h4>
-        <p><em>~ {{ vm.quote.author }} ~</em></p>
+        <md-card aria-label="Quote">
+          <md-card-title aria-label="title">
+            <md-card-title-text layout="column" layout-align="center center">
+              <span class="md-headline">{{ vm.quote.text }}</span>
+              <span class="md-subhead">{{ vm.quote.author }}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-icon-button" aria-label="Favorite">
+              <md-icon md-svg-icon="./static/img/ic_star_border_black.svg">
+              </md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Next">
+              <md-icon md-svg-icon="./static/img/ic_navigate_next_black.svg">
+              </md-icon>
+            </md-button>
+          </md-card-actions>
+        </md-card>
       </md-content>
 
       <script src="

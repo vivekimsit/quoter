@@ -21,7 +21,7 @@ function AppCtrl($http, $timeout, $location) {
 		}).then(function successCallback(response) {
 			vm.quote = response.data;
 			vm.message = '';
-			$timeout(readQuote, 5000 /* request next quote after 5 secs */);
+			//$timeout(readQuote, 5000 /* request next quote after 5 secs */);
 		}, function errorCallback(response) {
 			vm.message = message;
 			console.log(response);
