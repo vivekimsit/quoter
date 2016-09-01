@@ -30,6 +30,5 @@ AppCtrl.prototype.readQuote = function() {
   }.bind(this), function errorCallback(response) {
     this.quote = null;
     this.message = 'Something wrong with your connection?'
-    console.log(response);
   }.bind(this));
 };

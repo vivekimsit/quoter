@@ -32,26 +32,10 @@
                   aria-label="main"
                   flex layout="column" layout-align="center center">
         <h4 ng-if="!vm.quote">{{ vm.message }}</h4>
-        <md-card aria-label="Quote" ng-if="vm.quote">
-          <md-card-title aria-label="title">
-            <md-card-title-text layout="column" layout-align="center center">
-              <span class="md-headline">{{ vm.quote.text }}</span>
-              <span class="md-subhead">{{ vm.quote.author }}</span>
-            </md-card-title-text>
-          </md-card-title>
-          <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-icon-button" aria-label="Favorite">
-              <md-icon md-svg-icon="./static/img/ic_star_border_black.svg">
-              </md-icon>
-            </md-button>
-            <md-button class="md-icon-button"
-                       aria-label="Next"
-                       ng-click="vm.next()">
-              <md-icon md-svg-icon="./static/img/ic_navigate_next_black.svg">
-              </md-icon>
-            </md-button>
-          </md-card-actions>
-        </md-card>
+        <quote-detail quote="vm.quote"></quote-detail>
+        <md-button aria-label="Next" ng-click="vm.next()">
+           Next
+        </md-button>
       </md-content>
 
       <script src="
@@ -67,6 +51,7 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
       <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
       <!-- Application bootstrap  -->
       <script src="./static/js/main.js"></script>
+      <script src="./static/js/component.js"></script>
 
       <script type="text/javascript">    
         /**
@@ -76,7 +61,8 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
             .config(function ($locationProvider) {
                $locationProvider.html5Mode(true);
                })
-            .controller('AppCtrl', AppCtrl);
+            .controller('AppCtrl', AppCtrl)
+            .component('quoteDetail', QuoteComponent);
       </script>
   </body>
 </html>

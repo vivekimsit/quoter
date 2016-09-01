@@ -1,0 +1,18 @@
+<md-card aria-label="Quote">
+  <md-card-title aria-label="title">
+    <md-card-title-text layout="column" layout-align="center center">
+      <span class="md-headline">{{ $ctrl.quote.text }}</span>
+      <span class="md-subhead">{{ $ctrl.quote.author }}</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-divider></md-divider>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-button class="md-icon-button" aria-label="Favorite">
+      <md-tooltip>
+        Favorite
+      </md-tooltip>
+      <md-icon md-svg-icon="./static/img/ic_star_border_black.svg">
+      </md-icon>
+    </md-button>
+  </md-card-actions>
+</md-card>
