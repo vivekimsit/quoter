@@ -12,7 +12,7 @@
     "build": "npm run transpile && npm run copy-assets",
     "copy-assets": "npm run copy-data & npm run copy-html & npm run copy-js & npm run copy-css",
     "clean": "del build",
-    "copy-html": "copyfiles delivery/**/*.html build",
+    "copy-html": "copyfiles delivery/**/**/*.html build",
     "copy-css": "copyfiles delivery/**/*.svg delivery/**/*.css build",
     "copy-js": "copyfiles delivery/**/*.js build",
     "copy-img": "copyfiles delivery/**/*.svg build",

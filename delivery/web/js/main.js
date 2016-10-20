@@ -1,34 +1,20 @@
-function AppCtrl($http, $timeout, $location) {
+var app  = window.app || {};
+app.home = app.home   || {};
+
+app.home.Controller = function HomeCtrl($http, $location) {
   this.http_ = $http;
   this.location_ = $location;
 
-  this.message = 'Baking your awesome quotes';
-  this.quote = null;
-
-  this.readQuote();
+  this.loading = true;
 };
+var Controller = app.home.Controller;
 
-AppCtrl.prototype.next = function() {
-  this.readQuote();
-};
-
-AppCtrl.prototype.readQuote = function() {
-  var query = this.location_.search();
-  this.http_({
-    method: 'GET',
-    url: '/api/v1/quotes',
-    params: {
-      author: !!query ? query.author : '',
-      category: !!query ? query.category : ''
-    },
-    headers: {
-      'Accept': 'application/json'
-    }
-  }).then(function successCallback(response) {
-    this.quote = response.data;
-    //$timeout(readQuote, 5000 /* request next quote after 5 secs */);
-  }.bind(this), function errorCallback(response) {
-    this.quote = null;
-    this.message = 'Something wrong with your connection?'
-  }.bind(this));
-};
+angular.module('App', [
+      'ngMaterial',
+      'ngAnimate',
+      'quote'
+    ])
+    .config(function ($locationProvider) {
+      $locationProvider.html5Mode(true);
+    })
+    .controller('HomeCtrl', app.home.Controller)
