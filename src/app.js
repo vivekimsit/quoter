@@ -5,12 +5,11 @@ const morgan = require('morgan');
 
 import {QuoteDesc} from './models';
 
+app.use('/js', express.static(path.resolve(__dirname, 'js')));
 app.use(
-    '/static',
-    express.static(path.join(__dirname, './delivery/web')));
+    '/template', express.static(path.resolve(__dirname, 'delivery/web/js')));
 app.use(
-    '/static/js/quote',
-    express.static(path.join(__dirname, './delivery/web/js/quote')));
+    '/css', express.static(path.resolve(__dirname, 'delivery/web/css')));
 app.use(morgan('combined'));
 
 const PORT = 3000;
@@ -39,7 +38,7 @@ app.route('/api/v1/quotes')
       getRandomQuote(res, req.query);
     });
 
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
   res.sendFile(__dirname + '/delivery/web/index.html');
 });
 

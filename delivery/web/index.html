@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="App" class="no-js" lang="en-US">
+<html class="no-js" lang="en-US">
   <head>
     <base href="/">
     <meta charset="utf-8">
@@ -13,7 +13,7 @@
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
-    <link rel='stylesheet' href='./static/css/main.css'>
+    <link rel='stylesheet' href='./css/main.css'>
   </head>
   <body ng-cloak layout="column" layout-fill>
       <!--[if lt IE 8]>
@@ -21,7 +21,7 @@
       <![endif]-->
 
       <!-- Add your site or application content here -->
-      <md-toolbar ng-controller="HomeCtrl as home">
+      <md-toolbar ng-controller="HomeController as home">
         <div class="md-toolbar-tools">
           <span>Quoter</span>
           <span flex></span>
@@ -46,7 +46,7 @@
                   aria-label="main"
                   flex layout="column" layout-align="center center">
         <h4 ng-if="!vm.quote">{{ vm.message }}</h4>
-        <quote-card quote="vm.quote"></quote-card>
+        <quote-card quote="vm.quote" on-favorite="vm.favorite()"></quote-card>
         <md-button ng-if="vm.quote"
                    aria-label="Next" ng-click="vm.next()">
            Next
@@ -65,10 +65,6 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
       <!-- Angular Material Library -->
       <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
       <!-- Application bootstrap  -->
-      <script src="./static/js/quote/quote.js"></script>
-      <script src="./static/js/quote/component.js"></script>
-      <script src="./static/js/quote/controller.js"></script>
-      <script src="./static/js/quote/module.js"></script>
-      <script src="./static/js/main.js"></script>
+      <script src="./js/bundle.js"></script>
   </body>
 </html>

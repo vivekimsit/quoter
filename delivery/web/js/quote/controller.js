@@ -1,9 +1,7 @@
 /* Controller for quotes view. */
+import {Quote} from './quote';
 
-var app   = window.app || {};
-app.quote = app.quote  || {};
-
-app.quote.QuoteController = function QuoteController($http, $location) {
+function QuoteController($http, $location) {
   this.http_ = $http;
 
   this.message = '';
@@ -11,7 +9,6 @@ app.quote.QuoteController = function QuoteController($http, $location) {
   this.quotes  = null;
   this.load();
 };
-var QuoteController = app.quote.QuoteController;
 
 QuoteController.prototype.load = function(author, category) {
   var params = {
@@ -40,3 +37,9 @@ QuoteController.prototype.load = function(author, category) {
 QuoteController.prototype.next = function() {
   this.load();
 };
+
+QuoteController.prototype.favorite = function() {
+  window.alert('Thanks, the quote is added to the favorite queue.');
+};
+
+export {QuoteController};
