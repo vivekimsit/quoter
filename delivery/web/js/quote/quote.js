@@ -12,4 +12,8 @@ Quote.prototype.toString = function() {
   return '[' + this.title + ':' + this.author + ']';
 };
 
-export {Quote}
+Quote.fromJSON = function(data) {
+  return new Quote(data);
+};
+
+export {Quote};

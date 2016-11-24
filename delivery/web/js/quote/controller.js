@@ -1,8 +1,9 @@
 /* Controller for quotes view. */
-import {Quote} from './quote';
 
-function QuoteController($http, $location) {
-  this.http_ = $http;
+
+function QuoteController($location, quoteService) {
+  this.location_ = $location;
+  this.quoteService_ = quoteService;
 
   this.message = '';
   this.loading = true;
@@ -11,27 +12,17 @@ function QuoteController($http, $location) {
 };
 
 QuoteController.prototype.load = function(author, category) {
-  var params = {
-    author: author || '',
-    category: category || ''
-  };
-  this.http_({
-    method: 'GET',
-    url: '/api/v1/quotes',
-    params: params,
-    headers: {
-      'Accept': 'application/json'
-    }
-  })
-  .then(function success(response) {
-    this.quote = new Quote(response.data);
-  }.bind(this))
-  .catch(function error(err) {
-    this.message = 'Oops something wrong happened!';
-  }.bind(this))
-  .then(function() {
-    this.loading = false;
-  }.bind(this));
+  this.quoteService_
+      .get({author: author, category: category})
+      .then(function success(quote) {
+        this.quote = quote;
+      }.bind(this))
+      .catch(function error(err) {
+        this.message = 'Oops something wrong happened!';
+      }.bind(this))
+      .then(function() {
+        this.loading = false;
+      }.bind(this));
 };
 
 QuoteController.prototype.next = function() {

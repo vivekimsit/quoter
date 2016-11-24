@@ -44,13 +44,18 @@
       <md-content ng-controller="QuoteCtrl as vm"
                   class="main"
                   aria-label="main"
-                  flex layout="column" layout-align="center center">
-        <h4 ng-if="!vm.quote">{{ vm.message }}</h4>
-        <quote-card quote="vm.quote" on-favorite="vm.favorite()"></quote-card>
-        <md-button ng-if="vm.quote"
-                   aria-label="Next" ng-click="vm.next()">
-           Next
-        </md-button>
+                  layout-align="center center"
+                  flex layout="row">
+        <div layout="column" flex="75" layout-align="center center">
+          <h4 ng-if="!vm.quote">{{ vm.message }}</h4>
+          <quote-card quote="vm.quote"
+                      layout-fill
+                      on-favorite="vm.favorite()"></quote-card>
+          <md-button ng-if="vm.quote"
+                     aria-label="Next" ng-click="vm.next()">
+             Next
+          </md-button>
+        </div>
       </md-content>
 
       <script src="

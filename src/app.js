@@ -10,6 +10,8 @@ app.use(
     '/template', express.static(path.resolve(__dirname, 'delivery/web/js')));
 app.use(
     '/css', express.static(path.resolve(__dirname, 'delivery/web/css')));
+app.use(
+    '/img', express.static(path.resolve(__dirname, 'delivery/web/img')));
 app.use(morgan('combined'));
 
 const PORT = 3000;
