@@ -44,6 +44,11 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/delivery/web/index.html');
 });
 
+//The 404 Route (ALWAYS Keep this as the last route)
+app.get('*', function(req, res){
+  res.sendFile(__dirname + '/delivery/web/404.html');
+});
+
 app.listen(PORT, () => {
 	console.log(`App listening on port ${PORT}`);
 });

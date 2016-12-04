@@ -6,6 +6,7 @@ const APP_NAME = 'QuoteApp';
 const App = angular.module(APP_NAME, [
       'ngMaterial',
       'ngAnimate',
+      'ngRoute',
       HomeModule.name,
       QuoteModule.name
     ])
