@@ -6,4 +6,11 @@ Simple quote generation application showcasing DDD and Clean Architecture.
 - [x] Setup inital repository
 - [x] Add features
 - [x] Add tests
-- [ ] Stick to the features
+
+### Running
+
+```sh
+$ npm start
+
+$ npm run build_webpack
+```

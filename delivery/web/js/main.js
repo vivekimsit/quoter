@@ -1,20 +1,18 @@
-var app  = window.app || {};
-app.home = app.home   || {};
+import {QuoteModule} from './quote';
+import {HomeModule} from './home';
 
-app.home.Controller = function HomeCtrl($http, $location) {
-  this.http_ = $http;
-  this.location_ = $location;
+const APP_NAME = 'QuoteApp';
 
-  this.loading = true;
-};
-var Controller = app.home.Controller;
-
-angular.module('App', [
+const App = angular.module(APP_NAME, [
       'ngMaterial',
       'ngAnimate',
-      'quote'
+      HomeModule.name,
+      QuoteModule.name
     ])
     .config(function ($locationProvider) {
       $locationProvider.html5Mode(true);
-    })
-    .controller('HomeCtrl', app.home.Controller)
+    });
+
+angular.bootstrap(document.getElementsByTagName("body")[0], [APP_NAME]);
+
+export {App};

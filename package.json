@@ -20,7 +20,8 @@
     "transpile": "babel src/ -d build -s",
     "pretest": "node_modules/.bin/eslint src/*.js test/*.js",
     "test": "node_modules/.bin/mocha",
-    "start": "npm run clean && npm run build && node build/app.js"
+    "start": "npm run clean && npm run build && node build/app.js",
+    "build_webpack": "webpack"
   },
   "directories": {
     "src": "./src",
@@ -67,12 +68,14 @@
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
-    "babel-core": "^6.13.2",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
     "babel-polyfill": "^6.9.1",
-    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-es2015": "^6.18.0",
     "copyfiles": "^1.0.0",
     "eslint": "^3.2.0",
     "mocha": "^2.5.3",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "webpack": "^1.13.3"
   }
 }
