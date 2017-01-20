@@ -30,6 +30,10 @@ export default class QuoteDesc {
 		});
 	}
 
+  all() {
+    return this[Symbols.quotes];
+  }
+
 	count() {
 		return this[Symbols.count];
 	}

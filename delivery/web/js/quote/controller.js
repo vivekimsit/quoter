@@ -7,26 +7,29 @@ function QuoteController($location, quoteService) {
 
   this.message = '';
   this.loading = true;
-  this.quotes  = null;
+  this.quotes = [];
+  this.quote = null;
   this.load();
 };
 
 QuoteController.prototype.load = function(author, category) {
   this.quoteService_
-      .get({author: author, category: category})
-      .then(function success(quote) {
-        this.quote = quote;
+      .all({limit: 10})
+      .then(function success(quotes) {
+        this.quotes = quotes;
+        this.quote = this.quotes.next();
       }.bind(this))
       .catch(function error(err) {
         this.message = 'Oops something wrong happened!';
       }.bind(this))
-      .then(function() {
+      .finally(function() {
         this.loading = false;
       }.bind(this));
 };
 
 QuoteController.prototype.next = function() {
-  this.load();
+  this.quote = this.quotes.next();
+  //this.currentIndex = (this.currentIndex + 1) % this.quotes.length;
 };
 
 QuoteController.prototype.favorite = function() {

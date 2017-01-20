@@ -1,11 +1,11 @@
-import {Quote} from './quote';
+import {Quotes} from './quotes';
 
 
 function QuoteService($http) {
   this.http_ = $http;
 };
 
-QuoteService.prototype.get = function(params) {
+QuoteService.prototype.all = function(params) {
   return this.http_({
     method: 'GET',
     url: '/api/v1/quotes',
@@ -13,8 +13,12 @@ QuoteService.prototype.get = function(params) {
     headers: {
       'Accept': 'application/json'
     }
-  }).then(function handleResponse(response) {
-    return new Quote(response.data);
+  }).then(function success(response) {
+    let quotes = new Quotes();
+    for (let quote of response.data) {
+      quotes.add(quote);
+    }
+    return quotes;
   });
 };
 

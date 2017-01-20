@@ -17,28 +17,17 @@ app.use(morgan('combined'));
 const PORT = 3000;
 const DATA_PATH = path.join(__dirname, './data', 'quotes.json');
 
-function getRandomQuote(res, query) {
+function getQuotes(res, query) {
 	new QuoteDesc(DATA_PATH, (err, model) => {
 		if (err) throw err;
-		let quote;
-		if (query.author) {
-			quote = model.randomQuoteByAuthor(query.author);
-		}
-		else if (query.category) {
-			quote = model.randomQuoteByCategory(query.category);
-		}
-		else {
-			quote = model.randomQuote();
-		}
-		res.json(quote);
+		res.json(model.all());
 	});
 }
 
 // Quote specific routes
-app.route('/api/v1/quotes')
-    .get(function(req, res) {
-      getRandomQuote(res, req.query);
-    });
+app.route('/api/v1/quotes').get(function(req, res) {
+  getQuotes(res);
+});
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/delivery/web/index.html');
