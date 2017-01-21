@@ -6,12 +6,7 @@ const morgan = require('morgan');
 import {QuoteDesc} from './models';
 
 app.use('/js', express.static(path.resolve(__dirname, 'js')));
-app.use(
-    '/template', express.static(path.resolve(__dirname, 'delivery/web/js')));
-app.use(
-    '/css', express.static(path.resolve(__dirname, 'delivery/web/css')));
-app.use(
-    '/img', express.static(path.resolve(__dirname, 'delivery/web/img')));
+app.use(express.static(path.resolve(__dirname, 'delivery', 'web')));
 app.use(morgan('combined'));
 
 const PORT = 3000;
@@ -24,7 +19,6 @@ function getQuotes(req, res, query) {
     let quotes = model.all();
     let page = req.query.page || 0;
     let skip = page * PAGE_SIZE;
-    console.log(skip, PAGE_SIZE);
 		res.json(quotes.splice(skip, PAGE_SIZE));
 	});
 }

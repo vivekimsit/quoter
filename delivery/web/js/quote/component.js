@@ -1,7 +1,7 @@
 /* Component representing quote */
 
 const QuoteComponent = {
-  templateUrl: './template/quote/quote.html',
+  templateUrl: './js/quote/quote.html',
   bindings: {
     quote: '<'
   }
