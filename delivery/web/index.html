@@ -21,7 +21,7 @@
       <![endif]-->
 
       <!-- Add your site or application content here -->
-      <md-toolbar ng-controller="HomeController as home">
+      <md-toolbar ng-controller="HomeController as vm">
         <div class="md-toolbar-tools">
           <span>Quoter</span>
           <span flex></span>
@@ -48,7 +48,8 @@
                   flex layout="row">
         <div layout="column" flex="75" layout-align="center center">
           <h4 ng-if="!vm.quote">{{ vm.message }}</h4>
-          <quote-card quote="vm.quote"
+          <quote-card ng-if="vm.quote"
+                      quote="vm.quote"
                       on-favorite="vm.favorite()"></quote-card>
           <md-button ng-if="!vm.quotes.isEmpty()"
                      aria-label="Next" ng-click="vm.next()">

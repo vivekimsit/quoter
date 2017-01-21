@@ -15,18 +15,23 @@ app.use(
 app.use(morgan('combined'));
 
 const PORT = 3000;
-const DATA_PATH = path.join(__dirname, './data', 'quotes.json');
+const DATA_PATH = path.resolve(__dirname, 'data', 'quotes.json');
+const PAGE_SIZE = 5;
 
-function getQuotes(res, query) {
+function getQuotes(req, res, query) {
 	new QuoteDesc(DATA_PATH, (err, model) => {
 		if (err) throw err;
-		res.json(model.all());
+    let quotes = model.all();
+    let page = req.query.page || 0;
+    let skip = page * PAGE_SIZE;
+    console.log(skip, PAGE_SIZE);
+		res.json(quotes.splice(skip, PAGE_SIZE));
 	});
 }
 
 // Quote specific routes
 app.route('/api/v1/quotes').get(function(req, res) {
-  getQuotes(res);
+  getQuotes(req, res);
 });
 
 app.get('/', function(req, res) {

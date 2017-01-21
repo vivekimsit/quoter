@@ -1,6 +1,5 @@
 /* Controller for quotes view. */
 
-
 function QuoteController($location, quoteService) {
   this.location_ = $location;
   this.quoteService_ = quoteService;
@@ -9,15 +8,20 @@ function QuoteController($location, quoteService) {
   this.loading = true;
   this.quotes = [];
   this.quote = null;
-  this.load();
+  this.count = 0;
+  this.page  = 0;
+  this.load(this.page);
 };
 
-QuoteController.prototype.load = function(author, category) {
+QuoteController.QUOTE_COUNT = 5;
+
+QuoteController.prototype.load = function(page) {
   this.quoteService_
-      .all({limit: 10})
+      .all({page: page})
       .then(function success(quotes) {
         this.quotes = quotes;
         this.quote = this.quotes.next();
+        this.count += 1;
       }.bind(this))
       .catch(function error(err) {
         this.message = 'Oops something wrong happened!';
@@ -28,8 +32,13 @@ QuoteController.prototype.load = function(author, category) {
 };
 
 QuoteController.prototype.next = function() {
-  this.quote = this.quotes.next();
-  //this.currentIndex = (this.currentIndex + 1) % this.quotes.length;
+  if (this.count === QuoteController.QUOTE_COUNT) {
+    this.page += 1;
+    this.load(this.page);
+  } else {
+    this.quote = this.quotes.next();
+    this.count += 1;
+  }
 };
 
 QuoteController.prototype.favorite = function() {
