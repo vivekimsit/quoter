@@ -9,14 +9,14 @@
     "url": "git+https://github.com/vivekimsit/quoter.git"
   },
   "scripts": {
-    "build": "npm run transpile && npm run copy-assets",
+    "build": "npm run transpile && npm run copy-html && npm run copy-data && npm run webpack",
     "copy-assets": "npm run copy-data & npm run copy-html & npm run copy-js & npm run copy-css",
     "clean": "del build",
-    "copy-html": "copyfiles delivery/**/**/*.html build",
+    "copy-html": "copyfiles public/**/*.html build",
     "copy-css": "copyfiles delivery/**/*.svg delivery/**/*.css build",
     "copy-js": "copyfiles delivery/**/*.js build",
     "copy-img": "copyfiles delivery/**/*.svg build",
-    "copy-data": "copyfiles data/quotes.json build",
+    "copy-data": "copyfiles quotes.json build",
     "transpile": "babel src/ -d build -s",
     "pretest": "node_modules/.bin/eslint src/*.js test/*.js",
     "test": "node_modules/.bin/mocha",
@@ -28,7 +28,7 @@
     "test": "./test"
   },
   "keywords": [
-    "ndoe",
+    "node",
     "ddd",
     "clean-architecture",
     "service",
@@ -73,9 +73,14 @@
     "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.18.0",
     "copyfiles": "^1.0.0",
+    "css-loader": "^0.26.1",
     "eslint": "^3.2.0",
+    "file-loader": "^0.9.0",
     "mocha": "^2.5.3",
     "morgan": "^1.7.0",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.3"
   }
 }

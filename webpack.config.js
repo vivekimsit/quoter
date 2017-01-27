@@ -10,14 +10,19 @@ module.exports = {
     filename: "bundle.js"
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['es2015']
-      }
-    }]
+    loaders: [
+      { test: /\.html$/, loader: 'raw' },
+      {
+        test: /\.js$/,
+        exclude: [/node_modules/, /src/],
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        }
+      },
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url?limit=10000000' }
+    ]
   },
   resolve: {
     extensions: ['', '.js']
