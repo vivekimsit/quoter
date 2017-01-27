@@ -9,18 +9,12 @@
     "url": "git+https://github.com/vivekimsit/quoter.git"
   },
   "scripts": {
-    "build": "npm run transpile && npm run copy-html && npm run copy-data && npm run webpack",
-    "copy-assets": "npm run copy-data & npm run copy-html & npm run copy-js & npm run copy-css",
+    "build": "npm run transpile && npm run webpack",
     "clean": "del build",
-    "copy-html": "copyfiles public/**/*.html build",
-    "copy-css": "copyfiles delivery/**/*.svg delivery/**/*.css build",
-    "copy-js": "copyfiles delivery/**/*.js build",
-    "copy-img": "copyfiles delivery/**/*.svg build",
-    "copy-data": "copyfiles quotes.json build",
-    "transpile": "babel src/ -d build -s",
     "pretest": "node_modules/.bin/eslint src/*.js test/*.js",
-    "test": "node_modules/.bin/mocha",
     "start": "npm run clean && npm run build && node build/app.js",
+    "test": "node_modules/.bin/mocha",
+    "transpile": "babel src/ -d build -s",
     "webpack": "webpack"
   },
   "directories": {

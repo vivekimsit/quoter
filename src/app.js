@@ -7,14 +7,11 @@ var express = require('express');
 var app = express();
 var morgan = require('morgan');
 
-var PUBLIC = path.resolve(__dirname);
-
-app.use('/js', express.static(path.resolve(__dirname, 'js')));
-app.use(express.static(PUBLIC));
+app.use(express.static(path.resolve(__dirname)));
 app.use(morgan('combined'));
 
 var PORT = 3000;
-var DATA_PATH = path.resolve(__dirname, 'quotes.json');
+var DATA_PATH = path.resolve(__dirname + '/../data', 'quotes.json');
 var PAGE_SIZE = 5;
 
 function getQuotes(req, res, query) {
@@ -33,7 +30,7 @@ app.route('/api/v1/quotes').get(function (req, res) {
 });
 
 app.get('*', function (req, res) {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(path.resolve(__dirname + '/../templates', 'index.html'));
 });
 
 //The 404 Route (ALWAYS Keep this as the last route)

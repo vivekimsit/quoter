@@ -1,7 +1,7 @@
 var path = require('path');
 
 var CLIENT_JS = path.resolve(__dirname, 'public', 'js');
-var BUILD_JS  = path.resolve(__dirname, 'build', 'js');
+var BUILD_JS  = path.resolve(__dirname, 'build');
 
 module.exports = {
   entry: path.resolve(CLIENT_JS, 'main.js'),
