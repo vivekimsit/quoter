@@ -1,7 +1,7 @@
 {
   "name": "quoter",
   "version": "1.0.0",
-  "description": "Generate random quotes.",
+  "description": "App to generate random quotes.",
   "homepage": "https://github.com/vivekimsit/quoter#readme",
   "main": "index.js",
   "repository": {
@@ -21,7 +21,7 @@
     "pretest": "node_modules/.bin/eslint src/*.js test/*.js",
     "test": "node_modules/.bin/mocha",
     "start": "npm run clean && npm run build && node build/app.js",
-    "build_webpack": "webpack"
+    "webpack": "webpack"
   },
   "directories": {
     "src": "./src",

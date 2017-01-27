@@ -1,12 +1,12 @@
 var path = require('path');
 
-var dir_js = path.resolve(__dirname, 'delivery/web/js');
-var dir_build = path.resolve(__dirname, 'build/js');
+var CLIENT_JS = path.resolve(__dirname, 'public', 'js');
+var BUILD_JS  = path.resolve(__dirname, 'build', 'js');
 
 module.exports = {
-  entry: path.resolve(dir_js, 'main.js'),
+  entry: path.resolve(CLIENT_JS, 'main.js'),
   output: {
-    path: dir_build,
+    path: BUILD_JS,
     filename: "bundle.js"
   },
   module: {
