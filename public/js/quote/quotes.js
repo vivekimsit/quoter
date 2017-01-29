@@ -1,32 +1,32 @@
 /* Model representing quote collection */
-import {Quote} from './quote';
 
-function Quotes() {
-  this.quotes = [];
-  this.size = 0;
-  this.currentIndex = -1;
-}
+import Quote from './quote';
 
-var QuotesProto = Quotes.prototype;
+export default class Quotes {
 
-QuotesProto.add = function add(data) {
-  var newQuote = new Quote(data);
-  this.quotes.push(newQuote);
-  this.size++;
-  return newQuote;
+  constructor() {
+    this.quotes = [];
+    this.size = 0;
+    this.currentIndex = -1;
+  }
+
+  add(title, author, category) {
+    let newQuote = new Quote(title, author, category);
+    this.quotes.push(newQuote);
+    this.size++;
+    return newQuote;
+  }
+
+  all() {
+    return this.quotes;
+  }
+
+  isEmpty() {
+    return this.size === 0;
+  }
+
+  next() {
+    this.currentIndex = (this.currentIndex + 1) % this.size;
+    return this.quotes[this.currentIndex];
+  }
 };
-
-QuotesProto.all = function all() {
-  return this.quotes;
-};
-
-QuotesProto.isEmpty = function isEmpty() {
-  return this.size === 0;
-};
-
-QuotesProto.next = function next() {
-  this.currentIndex = (this.currentIndex + 1) % this.size;
-  return this.quotes[this.currentIndex];
-};
-
-export {Quotes};

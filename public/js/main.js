@@ -1,4 +1,4 @@
-import {QuoteModule} from './quote';
+import QuoteModule from './quote';
 import {HomeModule} from './home';
 
 const APP_NAME = 'QuoteApp';

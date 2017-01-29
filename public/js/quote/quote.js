@@ -1,19 +1,22 @@
 /* Model representing quote */
 
-function Quote(opt_data) {
-  var data = opt_data || {};
+export default class Quote {
 
-  this.title  = data['text']   || '';
-  this.author = data['author'] || '';
-  this.category = data['category'] || '';
+  constructor(title, author, category) {
+    this.title  = title;
+    this.author = author;
+    this.category = category;
+  }
+
+  getTitle() {
+    return this.title;
+  }
+
+  getAuthor() {
+    return this.author;
+  }
+
+  toString() {
+    return `${this.title}: ${this.author}`;
+  }
 };
-
-Quote.prototype.toString = function() {
-  return '[' + this.title + ':' + this.author + ']';
-};
-
-Quote.fromJSON = function(data) {
-  return new Quote(data);
-};
-
-export {Quote};

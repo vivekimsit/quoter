@@ -1,8 +1,8 @@
 <md-card aria-label="Quote">
   <md-card-title aria-label="title">
     <md-card-title-text layout="column" layout-align="center center">
-      <span class="md-headline">{{ $ctrl.quote.title }}</span>
-      <span class="md-subhead">{{ $ctrl.quote.author }}</span>
+      <span class="md-headline">{{ $ctrl.quote.getTitle() }}</span>
+      <span class="md-subhead">{{ $ctrl.quote.getAuthor() }}</span>
     </md-card-title-text>
   </md-card-title>
   <md-divider></md-divider>

@@ -1,10 +1,8 @@
 /* Component representing quote */
 
-const QuoteComponent = {
+export default {
   template: require('./quote.html'),
   bindings: {
     quote: '<'
   }
 };
-
-export {QuoteComponent};
