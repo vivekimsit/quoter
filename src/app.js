@@ -1,11 +1,12 @@
 'use strict';
 
-var _models = require('./models');
+var Quotes = require('./models');
 
 var path = require('path');
 var express = require('express');
 var app = express();
 var morgan = require('morgan');
+const fs = require('fs');
 
 app.use(express.static(path.resolve(__dirname)));
 app.use(morgan('combined'));
@@ -14,13 +15,25 @@ var PORT = 3000;
 var DATA_PATH = path.resolve(__dirname + '/../data', 'quotes.json');
 var PAGE_SIZE = 5;
 
+function addQuote(path, callback) {
+  fs.readFile(path, 'utf-8', (error, res) => {
+    if (error) callback(error);
+
+    const quotes = new Quotes();
+    res = JSON.parse(res);
+    for (const quote of res) {
+      quotes.add(quote);
+    }
+    callback(null, quotes);
+  });
+}
+
 function getQuotes(req, res, query) {
-  new _models.QuoteDesc(DATA_PATH, function (err, model) {
-    if (err) throw err;
-    var quotes = model.all();
+  addQuote(DATA_PATH, function (error, quotes) {
+    if (error) throw error;
     var page = req.query.page || 0;
     var skip = page * PAGE_SIZE;
-    res.json(quotes.splice(skip, PAGE_SIZE));
+    res.json(quotes.all().splice(skip, PAGE_SIZE));
   });
 }
 
@@ -32,13 +45,6 @@ app.route('/api/v1/quotes').get(function (req, res) {
 app.get('*', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/../templates', 'index.html'));
 });
-
-//The 404 Route (ALWAYS Keep this as the last route)
-/*
-app.get('*', function (req, res) {
-  res.sendFile(__dirname + '/public/404.html');
-});
-*/
 
 app.listen(PORT, function () {
   console.log('App listening on port ' + PORT);

@@ -1,6 +1,5 @@
 "use strict";
 
-import Quote from "./Quote";
-import QuoteDesc from "./QuoteDesc";
+import Quotes from "./Quotes";
 
-export {QuoteDesc};
+module.exports = Quotes;

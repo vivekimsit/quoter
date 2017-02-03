@@ -1,32 +1,29 @@
 "use strict";
 
-const data = Symbol('quote data');
 
 export default class Quote {
-  constructor(title, author, category) {
-    this[data] = {
-      title: title,
-      author: author,
-      category: category
-    };
+  constructor(text, author, category) {
+    this.text = text;
+    this.author = author;
+    this.category =  category;
   }
 
-  get title() {
-    return this[data].title;
+  text() {
+    return this.text;
   }
 
-  get author() {
-    return this[data].author;
+  author() {
+    return this.author;
   }
 
-  get category() {
-    return this[data].category;
+  category() {
+    return this.category;
   }
 
   toString() {
     return `
       == Quote ==
-      title: ${this.title}
+      text: ${this.text}
       author: ${this.author}
       category: ${this.category}`;
   }

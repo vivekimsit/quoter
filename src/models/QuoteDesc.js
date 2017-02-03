@@ -1,33 +1,23 @@
 "use strict";
 
-const fs = require('fs');
-const Symbols = {
-  quotes: Symbol('quotes data'),
-  count: Symbol('quotes count')
-};
-
 export default class Quotes {
-  constructor(file, cb) {
-    this[Symbols.quotes] = [];
-    this[Symbols.count] = 0;
-    this.readQuotes(file, cb);
-  }
-
-  readQuotes(file, cb) {
-    fs.readFile(file, 'utf-8', (err, res) => {
-      if (err) cb(err);
-      res = JSON.parse(res);
-      this[Symbols.quotes] = res;
-      this[Symbols.count] = res.length;
-      cb(null, this);
-    });
+  constructor() {
+    this.quotes = [];
   }
 
   all() {
-    return this[Symbols.quotes];
+    return this.quotes;
+  }
+
+  add(json) {
+    this.quotes.push(new Quote(json.title, json.author, json.category));
+  }
+
+  quote(id) {
+    // Find quote by number
   }
 
   count() {
-    return this[Symbols.count];
+    return this.quotes.length;
   }
 }
