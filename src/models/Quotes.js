@@ -6,7 +6,7 @@ const Symbols = {
   count: Symbol('quotes count')
 };
 
-export default class Quotes {
+export default class QuoteDesc {
   constructor(file, cb) {
     this[Symbols.quotes] = [];
     this[Symbols.count] = 0;
