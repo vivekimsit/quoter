@@ -51,48 +51,15 @@
       }
     </style>
   </head>
-  <body ng-cloak layout="column" layout-fill>
+  <body ng-cloak>
       <!--[if lt IE 8]>
           <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
 
       <!-- Add your site or application content here -->
-      <md-toolbar ng-controller="HomeController as vm">
-        <div class="md-toolbar-tools">
-          <span>Quoter</span>
-          <span flex></span>
-          <md-autocomplete flex="55"
-                           md-selected-item="vm.selectedItem"
-                           md-search-text="vm.searchText"
-                           md-min-length="0"
-                           md-items="item in vm.getMatches(vm.searchText)"
-                           md-item-text="item.display">
-            <md-item-template>
-              <span md-highlight-text="vm.searchText">{{item.display}}</span>
-            </md-item-template>
-            <md-not-found>
-              No matches found.
-            </md-not-found>
-          </md-autocomplete>
-          <span flex></span>
-        </div>
-      </md-toolbar>
-      <md-content ng-controller="QuoteCtrl as vm"
-                  class="main"
-                  aria-label="main"
-                  layout-align="center center"
-                  flex layout="row">
-        <div layout="column" flex="75" layout-align="center center">
-          <h4 ng-if="!vm.quote">{{ vm.message }}</h4>
-          <quote-card ng-if="vm.quote"
-                      quote="vm.quote"
-                      on-next="vm.next()"
-                      on-favorite="vm.favorite()"></quote-card>
-        </div>
-      </md-content>
+      <div ng-view layout="column" layout-fill></div>
 
-      <script src="
-https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
 
       <!-- Angular Material requires Angular.js Libraries -->
       <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>

@@ -12,7 +12,16 @@ export default angular.module(
       HomeModule.name,
       QuoteModule.name
     ])
-    .config(function ($locationProvider) {
+    .config(function ($locationProvider, $routeProvider) {
+      $routeProvider
+          .when('/', {
+            template: require('./quote/index.html'),
+            controller: 'QuoteCtrl',
+            controllerAs: 'vm'
+          })
+          .otherwise({
+            redirectTo: './templates/404.html',
+          });
       $locationProvider.html5Mode(true);
     });
 
