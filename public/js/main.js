@@ -3,7 +3,9 @@ import {HomeModule} from './home';
 
 const APP_NAME = 'QuoteApp';
 
-const App = angular.module(APP_NAME, [
+export default angular.module(
+    APP_NAME,
+    [
       'ngMaterial',
       'ngAnimate',
       'ngRoute',
@@ -15,5 +17,3 @@ const App = angular.module(APP_NAME, [
     });
 
 angular.bootstrap(document.getElementsByTagName("body")[0], [APP_NAME]);
-
-export {App};

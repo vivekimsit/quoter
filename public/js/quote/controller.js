@@ -1,9 +1,11 @@
 /* Controller for quotes view. */
+const QUOTE_COUNT = 5;
 
 export default class QuoteController {
 
-  constructor($location, quoteService) {
+  constructor($location, $mdToast, quoteService) {
     this.location_ = $location;
+    this.toast_ = $mdToast;
     this.quoteService_ = quoteService;
 
     this.message = '';
@@ -32,7 +34,7 @@ export default class QuoteController {
   }
 
   next() {
-    if (this.count === QuoteController.QUOTE_COUNT) {
+    if (this.count === QUOTE_COUNT) {
       this.page += 1;
       this.load(this.page);
     } else {
@@ -42,7 +44,10 @@ export default class QuoteController {
   }
 
   favorite() {
-    window.alert('Thanks, the quote is added to the favorite queue.');
+    this.showToast_('Thanks, the quote is added to the favorite queue.');
+  }
+
+  showToast_(message) {
+    this.toast_.show(this.toast_.simple().textContent(message));
   }
 };
-QuoteController.QUOTE_COUNT = 5;

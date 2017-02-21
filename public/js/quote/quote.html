@@ -7,11 +7,16 @@
   </md-card-title>
   <md-divider></md-divider>
   <md-card-actions layout="row" layout-align="end center">
-    <md-button class="md-icon-button" aria-label="Favorite">
+    <md-button class="md-icon-button"
+               aria-label="Favorite"
+               ng-click="$ctrl.onFavorite($ctrl.quote.id)">
       <md-tooltip>
         Favorite
       </md-tooltip>
       <md-icon>star</md-icon>
+    </md-button>
+    <md-button aria-label="Next" ng-click="$ctrl.onNext()">
+      Next
     </md-button>
   </md-card-actions>
 </md-card>

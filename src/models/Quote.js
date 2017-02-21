@@ -1,11 +1,12 @@
 "use strict";
 
+const repository = require('./Repository');
 
 export default class Quote {
-  constructor(text, author, category) {
+  constructor(text, author) {
+    this.id = null;
     this.text = text;
     this.author = author;
-    this.category =  category;
   }
 
   text() {
@@ -16,15 +17,18 @@ export default class Quote {
     return this.author;
   }
 
-  category() {
-    return this.category;
+  tags() {
+    repository.tags().get(this.id);
+  }
+
+  tag(tag) {
+    repository.tags().set(this.id, tag);
   }
 
   toString() {
     return `
       == Quote ==
       text: ${this.text}
-      author: ${this.author}
-      category: ${this.category}`;
+      author: ${this.author}`;
   }
 }

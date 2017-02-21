@@ -3,6 +3,8 @@
 export default {
   template: require('./quote.html'),
   bindings: {
-    quote: '<'
+    quote: '<',
+    onFavorite: '&',
+    onNext: '&'
   }
 };

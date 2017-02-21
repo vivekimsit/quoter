@@ -86,11 +86,8 @@
           <h4 ng-if="!vm.quote">{{ vm.message }}</h4>
           <quote-card ng-if="vm.quote"
                       quote="vm.quote"
+                      on-next="vm.next()"
                       on-favorite="vm.favorite()"></quote-card>
-          <md-button ng-if="!vm.quotes.isEmpty()"
-                     aria-label="Next" ng-click="vm.next()">
-             Next
-          </md-button>
         </div>
       </md-content>
 

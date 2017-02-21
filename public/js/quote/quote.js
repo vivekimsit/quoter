@@ -2,7 +2,8 @@
 
 export default class Quote {
 
-  constructor(title, author, category) {
+  constructor(title, author, category, id = null) {
+    this.id = id; 
     this.title  = title;
     this.author = author;
     this.category = category;
