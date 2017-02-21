@@ -15,12 +15,15 @@ export default angular.module(
     .config(function ($locationProvider, $routeProvider) {
       $routeProvider
           .when('/', {
-            template: require('./quote/index.html'),
+            template: require('./quote/template.html'),
             controller: 'QuoteCtrl',
             controllerAs: 'vm'
           })
+          .when('/404', {
+            template: require('./404/template.html'),
+          })
           .otherwise({
-            redirectTo: './templates/404.html',
+            redirectTo: '/404'
           });
       $locationProvider.html5Mode(true);
     });
