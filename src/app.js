@@ -1,13 +1,14 @@
 'use strict';
 
-var Quotes = require('./models');
-
-var path = require('path');
-var express = require('express');
-var app = express();
-var morgan = require('morgan');
+const express = require('express');
 const fs = require('fs');
+const morgan = require('morgan');
+const path = require('path');
+
 const repository = require('./models/Repository');
+const app = express();
+const router = express.Router();
+var Quotes = require('./models');
 
 app.use(express.static(path.resolve(__dirname)));
 app.use(morgan('combined'));
@@ -57,21 +58,24 @@ app.use(function (req, res, next) {
 });
 
 // Quote specific routes
-app.route('/api/v1/quotes').get(function (req, res) {
+
+router.get('/quotes', (req, res) => {
   getQuotes(req, res);
 });
 
-app.route('/api/v1/quotes/tags').get(function (req, res) {
+router.get('/quotes/tags', (req, res) => {
   getAllTags(req, res);
 });
 
-app.route('/api/v1/quotes/:id/tags').post(function (req, res) {
+router.get('/quotes/:id/tags', (req, res) => {
+  getTags(req, res);
+});
+
+router.post('/quotes/:id/tags', (req, res) => {
   addTag(req, res);
 });
 
-app.route('/api/v1/quotes/:id/tags').get(function (req, res) {
-  getTags(req, res);
-});
+app.use('/api/v1', router);
 
 app.get('*', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/../templates', 'index.html'));
