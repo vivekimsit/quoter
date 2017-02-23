@@ -1,5 +1,7 @@
 "use strict";
 
 import Quotes from "./Quotes";
+import Quote from "./Quote";
+import Tag from "./Tag";
 
-module.exports = Quotes;
+export { Quote, Quotes, Tag };

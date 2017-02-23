@@ -8,14 +8,15 @@ const path = require('path');
 const repository = require('./models/Repository');
 const app = express();
 const router = express.Router();
-var Quotes = require('./models');
+
+import {Quote, Quotes, Tag} from './models';
 
 app.use(express.static(path.resolve(__dirname)));
 app.use(morgan('combined'));
 
 var PORT = 3000;
-var DATA_PATH = path.resolve(__dirname + '/../data', 'quotes.json');
-var PAGE_SIZE = 5;
+const DATA_PATH = path.resolve(__dirname + '/../data', 'quotes.json');
+const PAGE_SIZE = 5;
 
 function addTag(req, res) {
   const tag = req.body.tag;
@@ -35,8 +36,14 @@ function addQuote(path, callback) {
     if (error) callback(error);
 
     const quotes = new Quotes();
-    res = JSON.parse(res);
-    for (const quote of res) {
+    for (let quote of JSON.parse(res)) {
+      let tags = quote.tags || [];
+
+      quote = new Quote(quote.text, quote.author, quote.category);
+      tags.forEach(tag => {
+        quote.tag(tag);
+      });
+      console.log(quote);
       quotes.add(quote);
     }
     callback(null, quotes);

@@ -2,41 +2,49 @@
   {
     "text": "To be or not to be, that is the question",
     "author": "Shakespeare",
-    "category": "literary"
+    "category": "literary",
+    "tags": ["foo", "bar"]
   },
   {
     "text": "Life is like a box of chocolates",
     "author": "foobar",
-    "category": "movie"
+    "category": "movie",
+    "tags": ["foo", "bar"]
   },
   {
     "text": "May the Force be with you",
     "author": "Obie Wan Kanobi",
-    "category": "movie"
+    "category": "movie",
+    "tags": []
   },
   {
     "text": "Great things are done by a series of small things brought together",
     "author": "Vincent Van Gogh",
-    "category": "inspiration"
+    "category": "inspiration",
+    "tags": ["foo"]
   },
   {
     "text": "To lose patience is to lose the battle",
     "author": "Mahatma Gandhi",
-    "category": "inspiration"
+    "category": "inspiration",
+    "tags": ["bar"]
   },
   {
     "text": "The only true wisdom is in knowing you know nothing.",
     "author": "Socrates",
-    "category": "wisdom"
+    "category": "wisdom",
+    "tags": ["foo", "bar"]
   },
   {
     "text": "Wisdom begins in wonder.",
     "author": "Socrates",
-    "category": "wisdom"
+    "category": "wisdom",
+    "tags": ["foo", "bar"]
   },
   {
     "text": "An honest man is always a child.",
     "author": "Socrates",
-    "category": "wisdom"
+    "category": "wisdom",
+    "tags": []
   }
 ]

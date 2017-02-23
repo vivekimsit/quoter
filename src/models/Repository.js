@@ -1,7 +1,7 @@
 "use strict";
 
 
-export default {
+module.exports = {
   tags: () => {
     const tagStore = new WeakMap();
     return {
@@ -23,4 +23,4 @@ export default {
     
     };
   }
-}
+};

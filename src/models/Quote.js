@@ -1,12 +1,15 @@
 "use strict";
 
-const repository = require('./Repository');
+const tags = require('./Repository').tags();
+
+let nextId = 0;
 
 export default class Quote {
-  constructor(text, author) {
-    this.id = null;
+  constructor(text, author, category) {
+    this.id = nextId++;
     this.text = text;
     this.author = author;
+    this.category = category;
   }
 
   text() {
@@ -17,12 +20,16 @@ export default class Quote {
     return this.author;
   }
 
+  category() {
+    return this.category;
+  }
+
   tags() {
-    repository.tags().get(this.id);
+    return tags.get(this.id);
   }
 
   tag(tag) {
-    repository.tags().set(this.id, tag);
+    tags.set(this.id, tag);
   }
 
   toString() {

@@ -8,11 +8,21 @@ export default class Quotes {
   }
 
   all() {
-    return this.quotes;
+    let res = [];
+    for (let quote of this.quotes) {
+      const tags = quote.tags();
+      res.push({
+        text: quote.text,
+        author: quote.author,
+        category: quote.category,
+        tags: tags
+      });
+    }
+    return res;
   }
 
-  add(json) {
-    this.quotes.push(new Quote(json.text, json.author, json.category));
+  add(quote) {
+    this.quotes.push(quote);
   }
 
   count() {
