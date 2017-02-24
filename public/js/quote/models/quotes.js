@@ -10,11 +10,9 @@ export default class Quotes {
     this.currentIndex = -1;
   }
 
-  add(title, author, category) {
-    let newQuote = new Quote(title, author, category);
-    this.quotes.push(newQuote);
+  add(quote) {
+    this.quotes.push(quote);
     this.size++;
-    return newQuote;
   }
 
   all() {

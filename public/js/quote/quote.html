@@ -5,6 +5,11 @@
       <span class="md-subhead">{{ $ctrl.quote.getAuthor() }}</span>
     </md-card-title-text>
   </md-card-title>
+  <md-card-content>
+    <md-button ng-repeat="tag in $ctrl.quote.tags"
+               class="md-primary"
+               ng-href="#" target="_blank">{{ tag }}</md-button>
+  </md-card-content>
   <md-divider></md-divider>
   <md-card-actions layout="row" layout-align="end center">
     <md-button class="md-icon-button"

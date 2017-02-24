@@ -1,4 +1,4 @@
-import Quotes from './quotes';
+import { Quote, Quotes } from './models';
 
 
 export default class QuoteService {
@@ -14,10 +14,19 @@ export default class QuoteService {
       headers: {
         'Accept': 'application/json'
       }
-    }).then(function success(response) {
+    })
+    .then(function success(response) {
+      return response ? response.data : [];
+    })
+    .then(function addQuotes(json) {
       let quotes = new Quotes();
-      for (let quote of response.data) {
-        quotes.add(quote.text, quote.author, quote.category);
+      for (let q of json) {
+        let quote = new Quote(q.id, q.text, q.author, q.category);
+        q['tags'] = q['tags'] || [];
+        q['tags'].forEach(tag => {
+          quote.tag(tag);
+        });
+        quotes.add(quote);
       }
       return quotes;
     });

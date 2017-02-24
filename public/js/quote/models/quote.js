@@ -2,11 +2,20 @@
 
 export default class Quote {
 
-  constructor(title, author, category, id = null) {
+  constructor(id, title, author, category) {
     this.id = id; 
     this.title  = title;
     this.author = author;
     this.category = category;
+    this.tags = [];
+  }
+
+  tag(tag) {
+    this.tags.push(tag);
+  }
+
+  tags() {
+    return [...this.tags];
   }
 
   getTitle() {

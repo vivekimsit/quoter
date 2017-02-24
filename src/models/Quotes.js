@@ -12,6 +12,7 @@ export default class Quotes {
     for (let quote of this.quotes) {
       const tags = quote.tags();
       res.push({
+        id: quote.id,
         text: quote.text,
         author: quote.author,
         category: quote.category,
