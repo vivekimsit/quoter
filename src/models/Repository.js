@@ -3,15 +3,18 @@
 
 module.exports = {
   tags: () => {
-    const tagStore = new WeakMap();
+    const tagStore = {};
     return {
-      get: (key) => tagStore.get(key),
-      set: (key, values) => tagStore.set(key, values),
+      get: (key) => tagStore[key],
+      set: (key, value) => {
+        tagStore[key] = tagStore[key] || [];
+        tagStore[key].push(value);
+      },
       all: () => {
         const keys = Object.keys(tagStore);
         const tags = [];
         for (const key of keys) {
-          tags.concat(tagStore.get(key));
+          tags.concat(tagStore[key]);
         }
         return tags;
       }

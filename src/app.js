@@ -38,12 +38,10 @@ function addQuote(path, callback) {
     const quotes = new Quotes();
     for (let quote of JSON.parse(res)) {
       let tags = quote.tags || [];
-
       quote = new Quote(quote.text, quote.author, quote.category);
       tags.forEach(tag => {
         quote.tag(tag);
       });
-      console.log(quote);
       quotes.add(quote);
     }
     callback(null, quotes);
@@ -53,6 +51,7 @@ function addQuote(path, callback) {
 function getQuotes(req, res, query) {
   addQuote(DATA_PATH, function (error, quotes) {
     if (error) throw error;
+    //console.log(quotes);
     var page = req.query.page || 0;
     var skip = page * PAGE_SIZE;
     res.json(quotes.all().splice(skip, PAGE_SIZE));
